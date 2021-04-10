@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="recordStatModel"
+            type="org.mahendroo.recordstat.models.RecordStatModel" />
+
+        <variable
+            name="actionCallback"
+            type="org.mahendroo.recordstat.callbacks.RecordStatCallback" />
+    </data>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".views.RecordStatActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                style="@style/CommonBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/HeaderTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/app_name" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+            <include
+                android:id="@+id/dt_comments"
+                layout="@layout/data_item"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/data_item_height"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar"
+                app:layout_constraintWidth_percent="0.5"
+                app:timestampModel="@{recordStatModel.commentsTimestamp}" />
+
+            <include
+                android:id="@+id/dt_photos"
+                layout="@layout/data_item"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/data_item_height"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/dt_comments"
+                app:layout_constraintWidth_percent="0.5"
+                app:timestampModel="@{recordStatModel.photosTimestamp}" />
+
+            <include
+                android:id="@+id/dt_todos"
+                layout="@layout/data_item"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/data_item_height"
+                app:layout_constraintStart_toStartOf="@id/dt_comments"
+                app:layout_constraintTop_toBottomOf="@id/dt_comments"
+                app:layout_constraintWidth_percent="0.5"
+                app:timestampModel="@{recordStatModel.todosTimestamp}" />
+
+            <include
+                android:id="@+id/dt_posts"
+                layout="@layout/data_item"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/data_item_height"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dt_photos"
+                app:layout_constraintWidth_percent="0.5"
+                app:timestampModel="@{recordStatModel.postsTimestamp}" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/acb_fetch_comments"
+                style="@style/ActionButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/data_item_start_margin"
+                android:onClick="@{()->actionCallback.fetchComments()}"
+                android:text="@string/label_fetch_comments"
+                app:layout_constraintEnd_toStartOf="@id/acb_fetch_photos"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dt_todos"
+                app:layout_constraintWidth_percent="0.45" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/acb_fetch_photos"
+                style="@style/ActionButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="@{()->actionCallback.fetchPhotos()}"
+                android:text="@string/label_fetch_photos"
+                app:layout_constraintBottom_toBottomOf="@id/acb_fetch_comments"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/acb_fetch_comments"
+                app:layout_constraintTop_toTopOf="@id/acb_fetch_comments"
+                app:layout_constraintWidth_percent="0.45" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/acb_fetch_todos"
+                style="@style/ActionButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/data_item_start_margin"
+                android:onClick="@{()->actionCallback.fetchTodos()}"
+                android:text="@string/label_fetch_todos"
+                app:layout_constraintEnd_toStartOf="@id/acb_fetch_photos"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/acb_fetch_comments"
+                app:layout_constraintWidth_percent="0.45" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/acb_fetch_posts"
+                style="@style/ActionButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="@{()->actionCallback.fetchPosts()}"
+                android:text="@string/label_fetch_posts"
+                app:layout_constraintBottom_toBottomOf="@id/acb_fetch_todos"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/acb_fetch_todos"
+                app:layout_constraintTop_toTopOf="@id/acb_fetch_todos"
+                app:layout_constraintWidth_percent="0.45" />
+
+            <TextClock
+                style="@style/ActionButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/data_item_start_margin"
+                android:layout_marginTop="@dimen/data_item_start_margin"
+                android:format12Hour="dd-MM-yyyy hh:mm:ss a"
+                android:format24Hour="dd-MM-yyyy HH:mm:ss"
+                android:gravity="center"
+                android:padding="@dimen/time_item_padding"
+                android:layout_marginBottom="@dimen/data_item_start_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/acb_fetch_todos" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

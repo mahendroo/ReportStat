@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="timestampModel"
+            type="org.mahendroo.recordstat.models.BaseTimestampModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        style="@style/CommonBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/data_item_start_margin">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actv_api_start_timestamp"
+            style="@style/DataItemText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/data_item_start_margin"
+            android:layout_marginTop="@dimen/data_item_start_margin"
+            android:layout_marginEnd="@dimen/data_item_start_margin"
+            android:text="@{@string/title_api_start_timestamp(timestampModel.apiRequestTime)}"
+            app:layout_constraintBottom_toTopOf="@id/actv_api_end_timestamp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actv_api_end_timestamp"
+            style="@style/DataItemText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/data_item_start_margin"
+            android:text="@{@string/title_api_end_timestamp(timestampModel.apiResponseTime)}"
+            app:layout_constraintBottom_toTopOf="@id/actv_store_start_timestamp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@id/actv_api_start_timestamp"
+            app:layout_constraintTop_toBottomOf="@id/actv_api_start_timestamp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actv_store_start_timestamp"
+            style="@style/DataItemText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/data_item_start_margin"
+            android:text="@{@string/title_store_start_timestamp(timestampModel.roomSaveInitTime)}"
+            app:layout_constraintBottom_toTopOf="@id/actv_store_end_timestamp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@id/actv_api_start_timestamp"
+            app:layout_constraintTop_toBottomOf="@id/actv_api_end_timestamp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actv_store_end_timestamp"
+            style="@style/DataItemText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/data_item_start_margin"
+            android:text="@{@string/title_store_end_timestamp(timestampModel.roomSaveDoneTime)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@id/actv_api_start_timestamp"
+            app:layout_constraintTop_toBottomOf="@id/actv_store_start_timestamp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

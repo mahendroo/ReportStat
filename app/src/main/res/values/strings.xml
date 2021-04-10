@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Test App</string>
+
+    <!--Data Item Labels-->
+    <string name="title_api_start_timestamp">Start: %d</string>
+    <string name="title_api_end_timestamp">End: %d</string>
+    <string name="title_store_start_timestamp">Start Save: %d</string>
+    <string name="title_store_end_timestamp">End Save: %d</string>
+
+    <!--Action Button Labels-->
+    <string name="label_fetch_comments">Comments</string>
+    <string name="label_fetch_photos">Photos</string>
+    <string name="label_fetch_todos">Todos</string>
+    <string name="label_fetch_posts">Posts</string>
+
+</resources>
